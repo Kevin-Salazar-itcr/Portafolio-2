@@ -36,61 +36,40 @@ E: una lista
 S: Una lista que contenga al número menor y mayor de la lista (si esta vacia, devolver error)
 R: El objeto debe ser una lista
 """
-###########################################
-def mayor(a, b):                                                            #
-    if(a>=b):                                                                   #
-        return a                                                                 #
-    else:                                                                          #
-        return b                                                                 #
-def digitoMayor(num):                                                   #
-    if(isinstance(num, int)):                                               #
-        if(num>0) and(num<10):                                        #
-            return num                                                         #
-        else:                                                                       #
-            return digitoMayor_aux(num)                             #
-    else:                                                                           #
-        print("digite un número mayor o igual a 10")            #
-                                                                                      #
-def digitoMayor_aux(num):                                             #
-    if(num==0):                                                                # 
-        return 0                                                                  #
-    else:                                                                           #
-        Mayor=num%10                                                   #
-        return mayor(Mayor, digitoMayor_aux(num//10))  #
+def mayorLista(lista):
+    if lista==[]:
+        return "Error"
+    else:
+        return mayorListaAux(lista[1:], lista[0])
+def mayorListaAux(lista, res):
+    if lista==[]:
+        return res
+    if lista[0]>res:
+        return mayorListaAux(lista[1:], lista[0])
+    else:
+        return mayorListaAux(lista[1:], res)
+def menorLista(lista):
+    if lista==[]:
+        return "Error"
+    else:
+        return menorListaAux(lista[1:], lista[0])
+def menorListaAux(lista, res):
+    if lista==[]:
+        return res
+    if lista[0]<res:
+        return menorListaAux(lista[1:], lista[0])
+    else:
+        return menorListaAux(lista[1:], res)
 ###########################################
 def extremosLista(lista):
     if(isinstance(lista, list)):
         if lista==[]:
             return "Error: lista vacía"
         else:
-            lista2=lista
-            return extremosAux(lista, [])
+            return [menorLista(lista), mayorLista(lista)]
     else:
         return "Error: El objeto no es una lista"
-def extremosAux(lista, res):
-##    if largoLista(lista)==1:
-##        return [mayor]
-##    else:
-##        if (lista[0]>=lista[1]):
-##            mayor=lista[0]
-##            print(lista[0],">=", lista[1])
-##            return extremosAux(lista[1:], res, mayor)
-##        else:
-##            mayor=lista[1]
-##            print(lista[0],"<", lista[1])
-##            return extremosAux(lista[1:], res, mayor)
-##    
-    if lista==[]:
-        return res
-    else:
-        Mayor=lista[-1]
-        print("lista[0] ", Mayor)
-        print("lista ", lista)
-        print(res)
-        print("fin ", extremosAux(lista[:-1], res))
-        
-        return mayor(Mayor, (extremosAux(lista[:-1], res)))  
-#===============================================================
+"==============================================================="
 """
 eliminarDigito
 E: un número y un dígito
